@@ -36,9 +36,8 @@ def minimize_cost_function() -> list:
     lower_bound = -2 * np.pi * np.ones(10)
     upper_bound = -lower_bound
     bounds = [(low, high) for low, high in zip(lower_bound, upper_bound)]
-    minimizer_kwargs = dict(bounds=bounds)
-    description = scipy.optimize.basinhopping(cost_function_of_angular_argument, starting_point,
-                                              minimizer_kwargs=minimizer_kwargs, niter=250)
+    # minimizer_kwargs = dict(bounds=bounds)
+    description = scipy.optimize.dual_annealing(cost_function_of_angular_argument, bounds=bounds)
     return description
 
 
